@@ -11,17 +11,26 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen font-sans antialiased bg-gradient-to-br from-white via-[#F6FBFF] to-[#EAFDF7]">
+      
+      {/* Header remains fixed and crisp */}
       <Header />
-      <Hero />
-      <About />
-      <Services />
-      <Countries />
-      <Stats />
-      <Testimonials />
-      <Blog />
-      <Contact />
+
+      {/* Smooth spacing flow so each section feels connected */}
+      <main className="pt-[70px] space-y-0">
+        <Hero />
+        <About />
+        <Services />
+        <Countries />
+        <Stats />
+        <Testimonials />
+        <Blog />
+        <Contact />
+      </main>
+
+      {/* Clean footer close */}
       <Footer />
+
     </div>
   );
 }

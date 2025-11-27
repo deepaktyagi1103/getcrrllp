@@ -23,49 +23,72 @@ function Blog() {
   ];
 
   return (
-    <section id="blog" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="blog"
+      className="py-20 bg-gradient-to-br from-white via-[#E9F8FF] to-[#E9FFF5] relative overflow-hidden"
+    >
+
+      {/* Soft Glow Background Bubbles */}
+      <div className="absolute w-96 h-96 bg-blue-200/20 blur-3xl -top-16 -left-10 rounded-full"></div>
+      <div className="absolute w-80 h-80 bg-green-200/25 blur-3xl bottom-10 right-10 rounded-full"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+        {/* Section Heading */}
         <div className="text-center mb-16">
-          <div className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <span className="px-5 py-2 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold tracking-wide">
             Our Blog
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            Our Latest News & Blog
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold mt-4 text-slate-900">
+            Latest Articles & Insights
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Blog Cards */}
+        <div className="grid md:grid-cols-3 gap-10">
+
           {blogs.map((blog, index) => (
             <article
               key={index}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group"
+              className="rounded-2xl overflow-hidden backdrop-blur-md bg-white/60 border border-blue-100 
+              shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group"
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="relative h-64 overflow-hidden">
+
+              {/* Top Image */}
+              <div className="relative h-56 overflow-hidden">
                 <img
                   src={blog.image}
                   alt={blog.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover rounded-t-xl group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2">
-                  <Calendar size={16} />
+                {/* Date Pill */}
+                <div className="absolute top-4 left-4 bg-blue-600 text-white px-4 py-1.5 rounded-full text-xs 
+                                flex items-center gap-1 font-medium shadow-lg">
+                  <Calendar size={14} />
                   {blog.date}
                 </div>
               </div>
 
+              {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-all line-clamp-2">
                   {blog.title}
                 </h3>
-                <p className="text-slate-600 mb-4 leading-relaxed line-clamp-3">
+                <p className="text-xs text-slate-600 mb-4 leading-relaxed line-clamp-3">
                   {blog.excerpt}
                 </p>
-                <button className="text-blue-600 font-medium hover:text-blue-700 flex items-center gap-2 group-hover:gap-3 transition-all">
-                  Read More <ArrowRight size={18} />
+
+                <button className="text-blue-600 font-medium flex items-center gap-2 hover:gap-3 
+                transition-all text-sm group-hover:text-blue-700">
+                  Read More <ArrowRight size={16} />
                 </button>
               </div>
             </article>
           ))}
+
         </div>
+
       </div>
     </section>
   );

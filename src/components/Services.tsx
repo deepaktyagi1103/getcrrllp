@@ -47,61 +47,78 @@ function Services() {
   ];
 
   const colorMap = {
-    blue: { bg: 'from-blue-500 to-blue-600', icon: 'bg-blue-100 text-blue-600' },
-    green: { bg: 'from-green-500 to-green-600', icon: 'bg-green-100 text-green-600' },
-    purple: { bg: 'from-violet-500 to-violet-600', icon: 'bg-violet-100 text-violet-600' },
-    orange: { bg: 'from-orange-500 to-orange-600', icon: 'bg-orange-100 text-orange-600' },
-    red: { bg: 'from-rose-500 to-rose-600', icon: 'bg-rose-100 text-rose-600' },
-    teal: { bg: 'from-teal-500 to-teal-600', icon: 'bg-teal-100 text-teal-600' }
+    blue: { bg: 'from-blue-500/80 to-blue-600/90', icon: 'bg-blue-100 text-blue-600' },
+    green: { bg: 'from-green-500/80 to-green-600/90', icon: 'bg-green-100 text-green-600' },
+    purple: { bg: 'from-violet-500/80 to-violet-600/90', icon: 'bg-violet-100 text-violet-600' },
+    orange: { bg: 'from-orange-500/80 to-orange-600/90', icon: 'bg-orange-100 text-orange-600' },
+    red: { bg: 'from-rose-500/80 to-rose-600/90', icon: 'bg-rose-100 text-rose-600' },
+    teal: { bg: 'from-teal-500/80 to-teal-600/90', icon: 'bg-teal-100 text-teal-600' }
   };
 
   return (
-    <section id="services" className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="services"
+      className="py-20 bg-gradient-to-br from-white via-[#E9F7FF] to-[#EBFFF4] relative overflow-hidden"
+    >
+
+      {/* Soft background glow */}
+      <div className="absolute w-[500px] h-[500px] bg-blue-200/20 blur-[120px] -top-14 -left-10"></div>
+      <div className="absolute w-[400px] h-[400px] bg-green-200/20 blur-[120px] bottom-0 right-0"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-[2]">
+
+        {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <span className="px-5 py-2 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold tracking-wide">
             Our Services
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
-            We Believe Everyone Deserves Our Quality Services
+          </span>
+
+          <h2 className="mt-4 text-3xl lg:text-4xl font-extrabold text-slate-900">
+            We Deliver Excellence With Global Standards
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Comprehensive solutions for global expansion, education, and business development
+
+          <p className="text-sm text-slate-600 mt-2 max-w-xl mx-auto">
+            Comprehensive solutions in International Expansion, Education, Business Growth & Residency
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {services.map((service, index) => {
             const Icon = service.icon;
-            const colors = colorMap[service.color as keyof typeof colorMap];
+            const colors = colorMap[service.color];
 
             return (
               <div
                 key={index}
-                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                className="group rounded-2xl bg-white/80 border border-slate-200 backdrop-blur-lg shadow-lg
+                hover:shadow-2xl hover:-translate-y-[6px] transition-all duration-500 overflow-hidden"
               >
+                
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-br ${colors.bg} opacity-80`}></div>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className={`w-16 h-16 ${colors.icon} rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform`}>
-                      <Icon size={32} />
+                    <div className={`w-16 h-16 ${colors.icon} rounded-xl flex items-center justify-center
+                    shadow-lg group-hover:scale-110 transition-all`}>
+                      <Icon size={30}/>
                     </div>
                   </div>
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-                  <p className="text-slate-600 mb-4 leading-relaxed">{service.description}</p>
-                  <button className="text-blue-600 font-medium hover:text-blue-700 flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Learn More
-                    <span>→</span>
+                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
+                  <p className="text-xs text-slate-600 mb-4 leading-relaxed">{service.description}</p>
+
+                  <button className="text-blue-600 text-xs font-semibold flex items-center gap-2
+                  group-hover:gap-3 transition-all">
+                    Learn More → 
                   </button>
                 </div>
+
               </div>
             );
           })}
